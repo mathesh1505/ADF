@@ -408,3 +408,230 @@ Benefits:
 
 ---
 
+# 1.4 Azure Storage Account (Types)
+
+An **Azure Storage Account** provides a unique namespace to store data objects in Azure.
+
+A single storage account can host multiple storage services.
+
+---
+
+## 1.4.1 Blob Storage
+
+Azure Blob Storage is used to store **unstructured data**.
+
+### What it stores
+
+* Text files
+* Images
+* Videos
+* Backups
+* Big data files
+
+### Use Cases
+
+* Data lakes
+* Media content
+* Log storage
+
+### Blob Types
+
+* **Block Blob** – Most common (CSV, JSON, Parquet)
+* **Append Blob** – Logs
+* **Page Blob** – VHD disks
+
+---
+
+## 1.4.2 File Storage
+
+Azure File Storage provides **file shares** in the cloud.
+
+### Features
+
+* SMB & NFS support
+* Mountable like a network drive
+
+### Use Cases
+
+* Lift-and-shift applications
+* Shared file systems
+* Application configuration storage
+
+---
+
+## 1.4.3 Table Storage
+
+Azure Table Storage is a **NoSQL key-value store**.
+
+### Characteristics
+
+* Schema-less
+* Highly scalable
+* Low latency
+
+### Use Cases
+
+* Metadata storage
+* User profiles
+* IoT data
+
+---
+
+## 1.4.4 Queue Storage
+
+Azure Queue Storage is a **message queue service**.
+
+### Features
+
+* Stores large numbers of messages
+* Asynchronous communication
+
+### Use Cases
+
+* Decoupling applications
+* Background processing
+* Event-driven workflows
+
+---
+
+# 1.5 Azure Data Factory (ADF)
+
+Azure Data Factory is a **cloud-based ETL/ELT service** used for data integration.
+
+---
+
+## Introduction to ADF
+
+ADF allows you to:
+
+* Ingest data from multiple sources
+* Transform data
+* Load data into target systems
+
+It supports:
+
+* Batch processing
+* Incremental loads
+* Hybrid data integration (on-prem + cloud)
+
+---
+
+## Key Components of ADF
+
+### 🔹 Pipelines
+
+A pipeline is a **logical container** for activities.
+
+Example pipeline:
+
+```
+Copy Activity → Data Flow → Sink
+```
+
+---
+
+### 🔹 Datasets
+
+Datasets represent the **data structure** used by activities.
+
+Examples:
+
+* Azure Blob Dataset
+* Azure SQL Dataset
+* ADLS Gen2 Dataset
+
+---
+
+### 🔹 Linked Services
+
+Linked Services define **connection information**.
+
+Examples:
+
+* Azure Blob Storage linked service
+* Azure SQL linked service
+* Azure Databricks linked service
+
+---
+
+# 1.6 Integration with Azure Services
+
+ADF integrates seamlessly with other Azure services.
+
+---
+
+## 1.6.1 Dataset and Linked Service
+
+### Dataset
+
+* Points to the data
+* Defines schema & format
+
+### Linked Service
+
+* Defines connection details
+* Uses authentication (Key Vault, Managed Identity)
+
+Example:
+
+```
+Linked Service → Dataset → Activity
+```
+
+---
+
+## 1.6.2 Integration Runtimes (IR)
+
+Integration Runtime provides the **compute environment** for data movement.
+
+### Types of IR
+
+| IR Type        | Use Case                     |
+| -------------- | ---------------------------- |
+| Azure IR       | Cloud-to-cloud data movement |
+| Self-hosted IR | On-premises integration      |
+| Azure-SSIS IR  | Run SSIS packages            |
+
+---
+
+## 1.6.3 Triggers and Monitoring
+
+### Triggers
+
+Triggers define **when pipelines run**.
+
+Types:
+
+* Schedule Trigger
+* Tumbling Window Trigger
+* Event-based Trigger
+
+---
+
+### Monitoring
+
+ADF provides monitoring for:
+
+* Pipeline runs
+* Activity runs
+* Trigger status
+* Error details
+
+Benefits:
+
+* Retry failed runs
+* Debug pipelines
+* SLA monitoring
+
+---
+
+## Why These Azure Services Matter
+
+* Centralized data integration
+* Scalable storage solutions
+* Secure and automated ETL pipelines
+* Enterprise-ready cloud architecture
+
+---
+
+
