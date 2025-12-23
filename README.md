@@ -641,5 +641,175 @@ Get Metadata → If Condition → Copy Activity
 ---
 
 
+# 1.8 Activities in Azure Data Factory (ADF)
+
+## 1.8.3 Control Flow Activities (Continued)
+
+Control Flow activities control **decision-making, orchestration, and execution flow** in ADF pipelines.
+
+---
+
+### 1.8.3.4 Lookup Activity
+
+The **Lookup Activity** retrieves a **single value or a set of rows** from a data source.
+
+#### What it returns
+
+* First row
+* Full result set
+
+#### Common Use Cases
+
+* Fetch watermark value for incremental load
+* Read configuration values
+* Drive dynamic pipelines
+
+#### Example
+
+```
+Lookup (Get last_processed_date)
+   ↓
+If Condition / Copy Activity
+```
+
+---
+
+### 1.8.3.5 Stored Procedure Activity
+
+Used to **execute stored procedures** in databases like Azure SQL.
+
+#### Use Cases
+
+* Data transformation inside database
+* Audit logging
+* Incremental updates
+
+#### Example
+
+```
+Copy Activity → Stored Procedure Activity
+```
+
+---
+
+# 1.8.4 Pipelines and Triggers
+
+### Pipelines
+
+A **pipeline** is a logical grouping of activities that together perform a task.
+
+Example pipeline:
+
+```
+Lookup → If Condition → Copy Activity → Stored Procedure
+```
+
+### Triggers
+
+Triggers define **when a pipeline runs**.
+
+#### Types of Triggers
+
+* Schedule Trigger
+* Tumbling Window Trigger
+* Event-based Trigger
+
+#### Use Cases
+
+* Daily batch processing
+* Event-driven ingestion
+* Window-based incremental loads
+
+---
+
+# 1.9 Azure Notebooks (Azure Databricks Integration)
+
+Azure Databricks notebooks can be integrated with ADF for advanced data processing.
+
+---
+
+## 1.9.1 Overview of Azure Databricks Notebooks Integration
+
+ADF can trigger Databricks notebooks using:
+
+* Azure Databricks activity
+
+#### Benefits
+
+* Leverage Spark for big data processing
+* Use PySpark, SQL, Scala
+* Combine ETL + advanced analytics
+
+#### Typical Flow
+
+```
+ADF Pipeline → Databricks Notebook → Delta Table
+```
+
+---
+
+## 1.9.2 Notebook Orchestration
+
+Notebook orchestration allows:
+
+* Parameter passing
+* Dependency management
+* Error handling
+
+#### Example
+
+```
+Notebook 1 (Ingest)
+   ↓
+Notebook 2 (Transform)
+   ↓
+Notebook 3 (Load)
+```
+
+Parameters passed from ADF → Databricks notebook.
+
+---
+
+# 1.10 Azure DevOps & CI/CD Integration
+
+Azure DevOps enables **automation, version control, and deployment** of ADF pipelines.
+
+---
+
+## 1.10.1 Continuous Integration and Development (CI/CD)
+
+### What CI/CD Means in ADF
+
+* Store ADF code in Git
+* Automatically deploy pipelines across environments
+
+### Typical CI/CD Flow
+
+```
+Dev (ADF) → Git Repo → Build Pipeline → Release Pipeline → Test / Prod
+```
+
+### Benefits
+
+* Version control
+* Automated deployments
+* Environment consistency
+* Faster release cycles
+
+---
+
+## Summary Table
+
+| Component                 | Purpose                        |
+| ------------------------- | ------------------------------ |
+| Lookup Activity           | Fetch values for dynamic logic |
+| Stored Procedure Activity | Execute DB logic               |
+| Pipelines                 | Group activities               |
+| Triggers                  | Schedule execution             |
+| Databricks Notebook       | Big data processing            |
+| Azure DevOps              | CI/CD & automation             |
+
+---
+
 
 
