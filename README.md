@@ -407,6 +407,238 @@ Benefits:
 * Enterprise-ready cloud architecture
 
 ---
+# 1.8 Activities in Azure Data Factory
+
+Activities are the **building blocks of ADF pipelines**. Each activity performs a specific task such as copying data, controlling execution flow, or fetching metadata.
+
+---
+
+## 1.8.1 Data Movement Activities
+
+Data Movement activities are used to **copy data from a source to a destination (sink)**.
+
+The most commonly used data movement activity is **Copy Activity**.
+
+---
+
+### 1.8.1.1 Azure Blob Storage – Source / Sink
+
+#### Source (Reading data from Blob Storage)
+
+Used when Blob Storage is the input.
+
+Example use cases:
+
+* Read CSV/JSON/Parquet files
+* Ingest raw data into data warehouse
+
+Example flow:
+
+```
+Azure Blob Storage → Copy Activity → Sink
+```
+
+#### Sink (Writing data to Blob Storage)
+
+Used when Blob Storage is the destination.
+
+Use cases:
+
+* Store processed data
+* Archive files
+* Data lake storage
+
+---
+
+### 1.8.1.2 Azure SQL Database – Source / Sink
+
+#### Source (Reading data from Azure SQL)
+
+Used to extract structured data.
+
+Use cases:
+
+* OLTP to Data Lake ingestion
+* Incremental data loads
+
+#### Sink (Writing data to Azure SQL)
+
+Used to load data into relational tables.
+
+Use cases:
+
+* Data warehousing
+* Reporting systems
+
+Example:
+
+```
+Azure SQL Database → Copy Activity → Azure Blob / ADLS
+```
+
+---
+
+## 1.8.2 Execution Control Activities
+
+Execution control activities manage **pipeline execution logic**.
+
+---
+
+### 1.8.2.1 Execute Pipeline Activity
+
+Used to **call another pipeline** from a parent pipeline.
+
+Use cases:
+
+* Modular pipelines
+* Reusable workflows
+* Master-child pipeline architecture
+
+Example:
+
+```
+Master Pipeline → Execute Pipeline → Child Pipeline
+```
+
+---
+
+### 1.8.2.2 If Condition Activity
+
+Executes activities based on a **boolean condition**.
+
+Use cases:
+
+* Conditional processing
+* File existence check
+
+Example:
+
+```
+IF (fileExists == true)
+  → Copy Activity
+ELSE
+  → Send Alert
+```
+
+---
+
+### 1.8.2.3 ForEach Activity
+
+Runs activities **in a loop** over a collection.
+
+Use cases:
+
+* Process multiple files
+* Loop through table names
+
+Example:
+
+```
+ForEach file in fileList
+  → Copy Activity
+```
+
+---
+
+### 1.8.2.4 Web Activity
+
+Used to **call REST APIs or web services**.
+
+Use cases:
+
+* Trigger external services
+* Call Logic Apps
+* Fetch API data
+
+Example:
+
+```
+ADF Pipeline → Web Activity → REST API
+```
+
+---
+
+## 1.8.3 Control Flow Activities
+
+Control Flow activities manage **pipeline timing and decision-making**.
+
+---
+
+### 1.8.3.1 Wait Activity
+
+Pauses pipeline execution for a specified duration.
+
+Use cases:
+
+* Delay execution
+* Wait for downstream system readiness
+
+Example:
+
+```
+Wait 10 minutes → Continue Pipeline
+```
+
+---
+
+### 1.8.3.2 Until Activity
+
+Repeats activities **until a condition becomes true**.
+
+Use cases:
+
+* Polling for file arrival
+* Monitoring job completion
+
+Example:
+
+```
+Until (status == 'completed')
+  → Wait
+  → Check Status
+```
+
+---
+
+### 1.8.3.3 Get Metadata Activity
+
+Retrieves **metadata information** about files or folders.
+
+Metadata examples:
+
+* File name
+* File size
+* Last modified date
+* Child items
+
+Use cases:
+
+* File validation
+* Conditional logic
+* Dynamic pipelines
+
+Example:
+
+```
+Get Metadata → If Condition → Copy Activity
+```
+
+---
+
+## Summary Table
+
+| Activity Type    | Purpose                   |
+| ---------------- | ------------------------- |
+| Copy Activity    | Move data between sources |
+| Execute Pipeline | Run child pipelines       |
+| If Condition     | Conditional execution     |
+| ForEach          | Loop execution            |
+| Web Activity     | Call APIs                 |
+| Wait             | Delay execution           |
+| Until            | Loop until condition      |
+| Get Metadata     | Fetch file details        |
+
+---
 
 
 
